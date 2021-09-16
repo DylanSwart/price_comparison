@@ -1,5 +1,6 @@
 # Component 2 Food lists
 
+# Food List
 food = [
     "Sea Salt Crackers",
     "Griffins Snax",
@@ -9,4 +10,5 @@ food = [
     "Original Rice Crackers"
 ]
 
+# Prints food list
 print(food)
