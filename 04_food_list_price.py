@@ -25,3 +25,4 @@ food_price_dict = {
     'rosemary wheat': 2,
     'original rice crackers': 1.65
 }
+print(food_price_dict)
