@@ -53,6 +53,12 @@ yes_no = [
     ["no", "n"]
 ]
 
+# Payment Method list
+payment = [
+    ["cash", "ca"],
+    ["credit", "cr"]
+]
+
 # Price dictionary
 food_price_dict = {
     'sea salt crackers': 2,
@@ -133,6 +139,19 @@ if check_food == "Yes":
         # Check if food is not exit code
         if food_choice != "xxx" and food_choice != "Invalid choice":
             food_order.append(food_row)
+
+    how_pay = "Invalid choice"
+    while how_pay == "Invalid choice":
+        how_pay = input("Please choose a payment option Cash or Credit: ").lower()
+        how_pay = string_check(how_pay, payment)
+
+    if how_pay == "Credit":
+        surcharge = 0.05 * subtotal
+
+    else:
+        surcharge = 0
+
+    total = subtotal + surcharge
 
 # Show food order
 print()
