@@ -2,7 +2,7 @@
 
 # Import statements here
 import re
-
+import pandas
 
 # Functions here
 
@@ -37,15 +37,20 @@ def string_check(choice, options):
 # Regular expressions
 number_regex = "^[1-9]"
 
+# Variables
+food_ok = ""
+food = ""
+name = "Dylan"
+
+sea_salt_crackers = []
+griffins_snax = []
+pizza_shapes = []
+arnotts_cheds = []
+rosemary_wheat = []
+original_race_crackers = []
+
 # Lists and dictionaries goes here
-valid_food = [
-    ["sea salt crackers"],
-    ["griffins snax"],
-    ["pizza shapes"],
-    ["arnotts cheds"],
-    ["rosemary wheat"],
-    ["original rice crackers"]
-]
+valid_food = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
 
 # Yes No list
 yes_no = [
@@ -66,7 +71,7 @@ food_price_dict = {
     'pizza shapes': 3.3,
     'arnotts cheds': 3.99,
     'rosemary wheat': 2,
-    'original rice crackers': 1.65
+    'original rice crackers': 1.65,
 }
 
 # KG price dictionary
@@ -79,12 +84,16 @@ kg_price_dict = {
     'original rice crackers': 16.5
 }
 
-# Initialise variables
-food_ok = ""
-food = ""
+movie_data_dict = {
+    'Name': name,
+    'Sea Salt Crackers': sea_salt_crackers,
+    'Griffins Snax': griffins_snax,
+    'Pizza Shapes': pizza_shapes,
+    'Arnotts Cheds': arnotts_cheds,
+    'Rosemary Wheat': rosemary_wheat,
+    'Original Rice Crackers': original_race_crackers
+}
 
-print(valid_food)
-print()
 
 # Holds food order for one person
 food_order = []
@@ -99,14 +108,14 @@ while check_food == "Invalid choice":
 if check_food == "Yes":
 
     desired_food = ""
-    while desired_food != "xxx":
+    while desired_food != "quit":
         # Ask user for desired food
         desired_food = input("food: ").lower()
 
         food_row = []
 
         # Exit code
-        if desired_food == "xxx":
+        if desired_food == "quit":
             break
 
         if re.match(number_regex, desired_food):
@@ -137,32 +146,24 @@ if check_food == "Yes":
         food_row.append(food_choice)
 
         # Check if food is not exit code
-        if food_choice != "xxx" and food_choice != "Invalid choice":
+        if food_choice != "quit" and food_choice != "Invalid choice":
             food_order.append(food_row)
 
-    how_pay = "Invalid choice"
-    while how_pay == "Invalid choice":
-        how_pay = input("Please choose a payment option Cash or Credit: ").lower()
-        how_pay = string_check(how_pay, payment)
-
-    if how_pay == "Credit":
-        surcharge = 0.05 * subtotal
-
-    else:
-        surcharge = 0
-
-    total = subtotal + surcharge
-
 # Show food order
-print()
-if len(food_order) == 0:
-    print("food order: None")
+# Print details
 
-else:
-    print("food Ordered: ")
+movie_frame = pandas.DataFrame(movie_data_dict)
+movie_frame = movie_frame.set_index('Name')
 
-    '''for item in food_order:
-        print(item)
-        '''
+# Create column called Sub Total
+# Fill it with price of tickets and snacks
+movie_frame["Sub Total"] = \
+    movie_frame['Name'] + \
+    movie_frame['Sea Salt Crackers'] * food_price_dict['Sea Salt Crackers'] + \
+    movie_frame['Griffin Snax'] * food_price_dict['Griffin Snax'] + \
+    movie_frame['Arnotts Cheds'] * food_price_dict['Arnotts Cheds'] + \
+    movie_frame['Rosemary Wheat'] * food_price_dict['Rosemary Wheat'] + \
+    movie_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
 
-    print(food_order)
+print(movie_frame)
+
