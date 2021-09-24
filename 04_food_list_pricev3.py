@@ -6,6 +6,7 @@ import pandas
 
 # Functions here
 
+
 # String_checker function here
 def string_check(choice, options):
 
@@ -66,25 +67,25 @@ payment = [
 
 # Price dictionary
 food_price_dict = {
-    'sea salt crackers': 2,
-    'griffins snax': 2.5,
-    'pizza shapes': 3.3,
-    'arnotts cheds': 3.99,
-    'rosemary wheat': 2,
-    'original rice crackers': 1.65,
+    'Sea Salt Crackers': 2,
+    'Griffins Snax': 2.5,
+    'Pizza Shapes': 3.3,
+    'Arnotts Cheds': 3.99,
+    'Rosemary Wheat': 2,
+    'Original Rice Crackers': 1.65,
 }
 
 # KG price dictionary
 kg_price_dict = {
-    'sea salt crackers': 10.81,
-    'griffin snax': 10,
-    'pizza shapes': 17.37,
-    'arnotts cheds': 15.96,
-    'rosemary wheat': 11.76,
-    'original rice crackers': 16.5
+    'Sea Salt Crackers': 10.81,
+    'Griffin Snax': 10,
+    'Pizza Shapes': 17.37,
+    'Arnotts Cheds': 15.96,
+    'Rosemary Wheat': 11.76,
+    'Original Rice crackers': 16.5
 }
 
-movie_data_dict = {
+food_data_dict = {
     'Name': name,
     'Sea Salt Crackers': sea_salt_crackers,
     'Griffins Snax': griffins_snax,
@@ -152,18 +153,18 @@ if check_food == "Yes":
 # Show food order
 # Print details
 
-movie_frame = pandas.DataFrame(movie_data_dict)
-movie_frame = movie_frame.set_index('Name')
+food_frame = pandas.DataFrame(food_data_dict)
+food_frame = food_frame.set_index('Name')
 
 # Create column called Sub Total
 # Fill it with price of tickets and snacks
-movie_frame["Sub Total"] = \
-    movie_frame['Name'] + \
-    movie_frame['Sea Salt Crackers'] * food_price_dict['Sea Salt Crackers'] + \
-    movie_frame['Griffin Snax'] * food_price_dict['Griffin Snax'] + \
-    movie_frame['Arnotts Cheds'] * food_price_dict['Arnotts Cheds'] + \
-    movie_frame['Rosemary Wheat'] * food_price_dict['Rosemary Wheat'] + \
-    movie_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
+food_frame["Sub Total"] = \
+    food_frame['Sea Salt Crackers'] * food_price_dict['Sea Salt Crackers'] + \
+    food_frame['Griffins Snax'] * food_price_dict['Griffins Snax'] + \
+    food_frame['Pizza Shapes'] * food_price_dict['Pizza Shapes'] + \
+    food_frame['Arnotts Cheds'] * food_price_dict['Arnotts Cheds'] + \
+    food_frame['Rosemary Wheat'] * food_price_dict['Rosemary Wheat'] + \
+    food_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
 
-print(movie_frame)
+print(food_frame)
 
