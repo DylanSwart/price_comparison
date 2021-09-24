@@ -39,6 +39,7 @@ def string_check(choice, options):
 number_regex = "^[1-9]"
 
 # Variables
+
 food_ok = ""
 food = ""
 name = "Dylan"
@@ -51,7 +52,7 @@ rosemary_wheat = []
 original_race_crackers = []
 
 # Lists and dictionaries goes here
-valid_food = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
+food_list = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
 
 # Yes No list
 yes_no = [
@@ -63,6 +64,15 @@ yes_no = [
 payment = [
     ["cash", "ca"],
     ["credit", "cr"]
+]
+
+valid_food = [
+    ["Sea Salt Crackers"],
+    ["Griffins Snax"],
+    ["Pizza Shapes"],
+    ["Arnotts Cheds"],
+    ["Rosemary Wheat"],
+    ["Original Rice Crackers"]
 ]
 
 # Price dictionary
@@ -98,6 +108,11 @@ food_data_dict = {
 
 # Holds food order for one person
 food_order = []
+
+# Main Routine here
+
+print(valid_food)
+print()
 
 # Ask user if they want food
 check_food = "Invalid choice"
@@ -167,4 +182,3 @@ food_frame["Sub Total"] = \
     food_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
 
 print(food_frame)
-
