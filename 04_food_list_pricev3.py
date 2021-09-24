@@ -1,10 +1,10 @@
 # Component 3v2 budget and food list
 
-# Import statements here
+# Import statements go here
 import re
 import pandas
 
-# Functions here
+# Functions go here
 
 
 # String_checker function here
@@ -39,7 +39,6 @@ def string_check(choice, options):
 number_regex = "^[1-9]"
 
 # Variables
-
 food_ok = ""
 food = ""
 name = "Dylan"
@@ -52,6 +51,8 @@ rosemary_wheat = []
 original_race_crackers = []
 
 # Lists and dictionaries goes here
+
+# Food list for data frame
 food_list = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
 
 # Yes No list
@@ -66,6 +67,7 @@ payment = [
     ["credit", "cr"]
 ]
 
+# Valid food list
 valid_food = [
     ["Sea Salt Crackers"],
     ["Griffins Snax"],
@@ -95,6 +97,7 @@ kg_price_dict = {
     'Original Rice crackers': 16.5
 }
 
+# Food data dictionary for dataframes
 food_data_dict = {
     'Name': name,
     'Sea Salt Crackers': sea_salt_crackers,
@@ -141,9 +144,6 @@ if check_food == "Yes":
         else:
             amount = 1
             desired_food = desired_food
-
-        # Remove white space around desired food
-        desired_food = desired_food.strip()
 
         # Check if food is valid
         food_choice = string_check(desired_food, valid_food)
