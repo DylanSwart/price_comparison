@@ -40,8 +40,9 @@ number_regex = "^[1-9]"
 
 # Variables
 food_ok = ""
-food = ""
 name = "Dylan"
+food = ""
+food_ordered = "Food Ordered"
 
 sea_salt_crackers = []
 griffins_snax = []
@@ -69,7 +70,7 @@ payment = [
 
 # Valid food list
 valid_food = [
-    ["Sea Salt Crackers"],
+    ["Sea_Salt Crackers"],
     ["Griffins Snax"],
     ["Pizza Shapes"],
     ["Arnotts Cheds"],
@@ -79,27 +80,28 @@ valid_food = [
 
 # Price dictionary
 food_price_dict = {
-    'Sea Salt Crackers': 2,
+    'SeaSalt Crackers': 2,
     'Griffins Snax': 2.5,
     'Pizza Shapes': 3.3,
     'Arnotts Cheds': 3.99,
     'Rosemary Wheat': 2,
-    'Original Rice Crackers': 1.65,
+    'Original Rice_Crackers': 1.65,
 }
 
 # KG price dictionary
 kg_price_dict = {
-    'Sea Salt Crackers': 10.81,
+    'Sea_Salt Crackers': 10.81,
     'Griffin Snax': 10,
     'Pizza Shapes': 17.37,
     'Arnotts Cheds': 15.96,
     'Rosemary Wheat': 11.76,
-    'Original Rice crackers': 16.5
+    'Original Rice Crackers': 16.5
 }
 
 # Food data dictionary for dataframes
 food_data_dict = {
     'Name': name,
+    'Food': food_ordered,
     'Sea Salt Crackers': sea_salt_crackers,
     'Griffins Snax': griffins_snax,
     'Pizza Shapes': pizza_shapes,
@@ -129,7 +131,23 @@ if check_food == "Yes":
     desired_food = ""
     while desired_food != "quit":
         # Ask user for desired food
-        desired_food = input("food: ").lower()
+        desired_food = input("food: ")
+
+        for var_list in valid_food:
+
+            if desired_food in var_list:
+
+                food = var_list[0].title
+                food_ok = "yes"
+
+            else:
+                food_ok = "no"
+
+        if food_ok == "yes":
+            print("Food Ordered: {}", food)
+
+        else:
+            print("Sorry that is not an option")
 
         food_row = []
 
@@ -143,7 +161,6 @@ if check_food == "Yes":
 
         else:
             amount = 1
-            desired_food = desired_food
 
         # Check if food is valid
         food_choice = string_check(desired_food, valid_food)
@@ -155,6 +172,7 @@ if check_food == "Yes":
 
         # Add food to list
         amount_food = "{} {}".format(amount, food_choice)
+        print(amount_food)
 
         # Add food and amount to list
 
@@ -174,6 +192,7 @@ food_frame = food_frame.set_index('Name')
 # Create column called Sub Total
 # Fill it with price of tickets and snacks
 food_frame["Sub Total"] = \
+    food_frame['Food'] + \
     food_frame['Sea Salt Crackers'] * food_price_dict['Sea Salt Crackers'] + \
     food_frame['Griffins Snax'] * food_price_dict['Griffins Snax'] + \
     food_frame['Pizza Shapes'] * food_price_dict['Pizza Shapes'] + \
