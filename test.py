@@ -1,4 +1,8 @@
 
+import re
+import pandas
+
+
 def string_check(choice, options):
 
     is_valid = ""
@@ -26,6 +30,23 @@ def string_check(choice, options):
         return "Invalid choice"
 
 
+# Regular expressions
+number_regex = "^[1-9]"
+
+# Variables
+food_ok = ""
+food = ""
+name = "Dylan"
+
+sea_salt_crackers = []
+griffins_snax = []
+pizza_shapes = []
+arnotts_cheds = []
+rosemary_wheat = []
+original_race_crackers = []
+
+food_list = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
+
 valid_food = [
     ["sea salt crackers"],
     ["griffins snax"],
@@ -45,14 +66,22 @@ food_price_dict = {
     'original rice crackers': 1.65
 }
 
+food_data_dict = {
+    'Name': name,
+    'Sea Salt Crackers': sea_salt_crackers,
+    'Griffins Snax': griffins_snax,
+    'Pizza Shapes': pizza_shapes,
+    'Arnotts Cheds': arnotts_cheds,
+    'Rosemary Wheat': rosemary_wheat,
+    'Original Rice Crackers': original_race_crackers
+}
+
 payment = [
     ["cash", "ca"],
     ["credit", "cr"]
 ]
 
-# Initialise variables
-food_ok = ""
-food = ""
+food_order = []
 
 print(valid_food)
 print()
@@ -60,42 +89,61 @@ print()
 # Loop program three times
 for item in range(0, 3):
 
-    # Ask used for desired snack
-    desired_food = input("Food: ").lower()
+    # If user input is yes ask what food they want
 
-    for var_list in valid_food:
+    desired_food = ""
+    while desired_food != "quit":
+        # Ask user for desired food
+        desired_food = input("food: ").lower()
 
-        # If chosen snack is in valid snacks return full response
-        if desired_food in var_list:
+        food_row = []
 
-            # Get full name of snack and put it in title case
-            food = var_list[0].title()
-            food_ok = "yes"
+        # Exit code
+        if desired_food == "quit":
             break
 
-        # If chosen snack is not in valid snack set snack ok to no
+        if re.match(number_regex, desired_food):
+            amount = int(desired_food[0])
+            desired_food = desired_food[1:]
+
         else:
-            food_ok = "no"
+            amount = 1
+            desired_food = desired_food
 
-    # If the snack is not ok ask question again
-    if food_ok == "yes":
-        print("Snack choice: ", food)
+        # Check if food is valid
+        food_choice = string_check(desired_food, valid_food)
 
-    else:
-        print("Sorry that was not a option")
+        # Check if food number is valid
+        if amount >= 5:
+            print("Sorry we have a max of 4 of each food")
+            food_choice = "Invalid choice"
 
-    how_pay = "Invalid choice"
-    while how_pay == "Invalid choice":
-        how_pay = input("Please choose a payment option Cash or Credit: ").lower()
-        how_pay = string_check(how_pay, payment)
+        # Add food to list
+        amount_food = "{} {}".format(amount, food_choice)
 
-    subtotal = food_price_dict[desired_food]
+        # Add food and amount to list
 
-    if how_pay == "Credit":
-        surcharge = 0.05 * subtotal
+        food_row.append(amount)
+        food_row.append(food_choice)
 
-    else:
-        surcharge = 0
+        # Check if food is not exit code
+        if food_choice != "quit" and food_choice != "Invalid choice":
+            food_order.append(food_row)
 
-    total = subtotal + surcharge
-    print(total)
+# Show food order
+# Print details
+
+food_frame = pandas.DataFrame(food_data_dict)
+food_frame = food_frame.set_index('Name')
+
+# Create column called Sub Total
+# Fill it with price of tickets and snacks
+food_frame["Sub Total"] = \
+    food_frame['Sea Salt Crackers'] * food_price_dict['Sea Salt Crackers'] + \
+    food_frame['Griffins Snax'] * food_price_dict['Griffins Snax'] + \
+    food_frame['Pizza Shapes'] * food_price_dict['Pizza Shapes'] + \
+    food_frame['Arnotts Cheds'] * food_price_dict['Arnotts Cheds'] + \
+    food_frame['Rosemary Wheat'] * food_price_dict['Rosemary Wheat'] + \
+    food_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
+
+print(food_frame)

@@ -114,7 +114,7 @@ food_order = []
 
 # Main Routine here
 
-print(valid_food)
+print(food_price_dict)
 print()
 
 # Ask user if they want food
