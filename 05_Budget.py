@@ -2,7 +2,10 @@
 
 import re
 
+# Functions here
 
+
+# String Check function
 def string_check(choice, options):
 
     is_valid = ""
