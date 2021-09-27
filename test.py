@@ -74,3 +74,5 @@ food_frame["Sub Total"] = \
     food_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
 
 print(food_frame)
+
+food_frame.to_csv("food_details.csv")
