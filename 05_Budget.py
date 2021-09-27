@@ -126,4 +126,3 @@ else:
 
     for item in food_order:
         print(item)
-
