@@ -21,12 +21,12 @@ print()
 for item in range(0, 3):
 
     # Ask used for desired snack
-    desired_snack = input("Food: ").lower()
+    desired_food = input("Food: ").lower()
 
     for var_list in valid_food:
 
         # If chosen snack is in valid snacks return full response
-        if desired_snack in var_list:
+        if desired_food in var_list:
 
             # Get full name of snack and put it in title case
             food = var_list[0].title()
