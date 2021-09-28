@@ -65,6 +65,11 @@ food_price_dict = {
 # Initialise variables
 food_ok = ""
 food = ""
+recommendation_1 = "Recommended Order: Original Rice Crackers"
+recommendation_2 = "Recommended Order: Sea Salt Crackers/ Rosemary Wheat"
+recommendation_3 = "Recommended Order: Griffins Snax"
+recommendation_4 = "Recommended Order: Pizza Shapes"
+recommendation_5 = "Recommended Order: Arnotts Cheds"
 
 print(valid_food)
 print()
@@ -81,7 +86,10 @@ while check_food == "Invalid choice":
 # If user input is yes ask what snacks they want
 if check_food == "Yes":
 
-    budget = int(input("What Is your budget: $"))
+    budget = float(input("What is your budget: $"))
+
+    if budget == 1.65:
+        print(recommendation_1)
 
     desired_food = ""
     while desired_food != "xxx":
@@ -111,7 +119,6 @@ if check_food == "Yes":
 
             # Exit code
             if desired_food == "xxx":
-                food_ok = "yes"
                 break
 
             if re.match(number_regex, desired_food):
