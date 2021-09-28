@@ -81,40 +81,64 @@ while check_food == "Invalid choice":
 # If user input is yes ask what snacks they want
 if check_food == "Yes":
 
+    budget = int(input("What Is your budget: $"))
+
     desired_food = ""
     while desired_food != "xxx":
         # Ask user for desired snack
         desired_food = input("snack: ").lower()
 
-        # Exit code
-        if desired_food == "xxx":
-            break
+        for var_list in valid_food:
 
-        if re.match(number_regex, desired_food):
-            amount = int(desired_food[0])
-            desired_food = desired_food[1:]
+            # If chosen snack is in valid snacks return full response
+            if desired_food in var_list:
+
+                # Get full name of snack and put it in title case
+                food = var_list[0].title()
+                food_ok = "yes"
+                break
+
+            # If chosen snack is not in valid snack set snack ok to no
+            else:
+                food_ok = "no"
+
+        # If the snack is not ok ask question again
+        if food_ok == "yes":
+            print("Snack choice: ", food)
 
         else:
-            amount = 1
-            desired_food = desired_food
+            print("Sorry that was not a option")
 
-        # Remove white space around desired snack
-        desired_food = desired_food.strip()
+            # Exit code
+            if desired_food == "xxx":
+                food_ok = "yes"
+                break
 
-        # Check if snack is valid
-        food_choice = string_check(desired_food, valid_food)
+            if re.match(number_regex, desired_food):
+                amount = int(desired_food[0])
+                desired_food = desired_food[1:]
 
-        # Check if snack number is valid
-        if amount >= 5:
-            print("Sorry we have a max of 4 snacks")
-            food_choice = "Invalid choice"
+            else:
+                amount = 1
+                desired_food = desired_food
 
-        # Add snack to list
-        amount_food = "{} {}".format(amount, food_choice)
+            # Remove white space around desired snack
+            desired_food = desired_food.strip()
 
-        # Check if snack is not exit code
-        if food_choice != "xxx" and food_choice != "Invalid choice":
-            food_order.append(food_choice)
+            # Check if snack is valid
+            food_choice = string_check(desired_food, valid_food)
+
+            # Check if snack number is valid
+            if amount >= 5:
+                print("Sorry we have a max of 4 snacks")
+                food_choice = "Invalid choice"
+
+            # Add snack to list
+            amount_food = "{} {}".format(amount, food_choice)
+
+            # Check if snack is not exit code
+            if food_choice != "xxx" and food_choice != "Invalid choice":
+                food_order.append(food_choice)
 
 # Show snack order
 print()
