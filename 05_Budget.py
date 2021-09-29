@@ -91,10 +91,22 @@ if check_food == "Yes":
     if budget == 1.65:
         print(recommendation_1)
 
+    elif budget == 2:
+        print(recommendation_2)
+
+    elif budget == 2.5:
+        print(recommendation_3)
+
+    elif budget == 3.3:
+        print(recommendation_4)
+
+    elif budget == 3.99:
+        print(recommendation_5)
+
     desired_food = ""
     while desired_food != "xxx":
         # Ask user for desired snack
-        desired_food = input("snack: ").lower()
+        desired_food = input("Order: ").lower()
 
         for var_list in valid_food:
 
