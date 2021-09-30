@@ -38,12 +38,12 @@ number_regex = "^[1-9]"
 
 # Lists and dictionaries goes here
 valid_food = [
-    ["sea salt crackers"],
-    ["griffins snax"],
-    ["pizza shapes"],
-    ["arnotts cheds"],
-    ["rosemary wheat"],
-    ["original rice crackers"]
+    ["Sea Salt Crackers"],
+    ["Griffins Snax"],
+    ["Pizza Shapes"],
+    ["Arnotts Cheds"],
+    ["Rosemary Wheat"],
+    ["Original Rice Crackers"]
 ]
 
 # Yes No list
@@ -54,22 +54,27 @@ yes_no = [
 
 # Price dictionary
 food_price_dict = {
-    'sea salt crackers': 2,
-    'griffins snax': 2.5,
-    'pizza shapes': 3.3,
-    'arnotts cheds': 3.99,
-    'rosemary wheat': 2,
-    'original rice crackers': 1.65
+    'Sea Salt Crackers': 2,
+    'Griffins Snax': 2.5,
+    'Pizza Shapes': 3.3,
+    'Arnotts Cheds': 3.99,
+    'Rosemary Wheat': 2,
+    'Original Rice Crackers': 1.65
 }
+
+# Recommendation list
+recommendations = [
+    ["Original Rice Crackers", 1.65],
+    ["Sea Salt Crackers", 2],
+    ["Rosemary Wheat", 2],
+    ["Griffins Snax", 2.5],
+    ["Pizza Shapes", 3.3],
+    ["Arnotts Cheds", 3.99]
+]
 
 # Initialise variables
 food_ok = ""
 food = ""
-recommendation_1 = "Recommended Order: Original Rice Crackers"
-recommendation_2 = "Recommended Order: Sea Salt Crackers/ Rosemary Wheat"
-recommendation_3 = "Recommended Order: Griffins Snax"
-recommendation_4 = "Recommended Order: Pizza Shapes"
-recommendation_5 = "Recommended Order: Arnotts Cheds"
 
 print(valid_food)
 print()
@@ -89,6 +94,7 @@ if check_food == "Yes":
     budget = float(input("What is your budget: $"))
 
     if budget == 1.65:
+
         print(recommendation_1)
 
     elif budget == 2:
