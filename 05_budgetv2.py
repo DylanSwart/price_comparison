@@ -40,6 +40,7 @@ recommendations = [
     ["Arnotts Cheds", 3.99]
 ]
 
-set = 4
+set = 5
 print(combine(food_price_dict, set))
+print(combine(food_price_dict.values(), set))
 
