@@ -38,7 +38,7 @@ food_price_dict = {
     'Original Rice Crackers': 1.65
 }
 
-budget = float(input("Budget: "))
+budget = float(input("Budget: $"))
 
 ob1 = Solution()
 print(ob1.combinationsum(food_price_dict.values(), budget))
