@@ -112,6 +112,7 @@ food_price_dict = {
 # Initialise variables
 food_ok = ""
 food = ""
+recommended = ""
 
 print(food_price_dict)
 print()
@@ -174,7 +175,6 @@ if check_food == "Yes":
 
 # Show snack order
 print()
-
 if len(food_order) == 0:
     print("Food order: None")
 
