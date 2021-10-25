@@ -1,11 +1,10 @@
 # Base component version 2
-
 # Import statements go here
 import pandas
 import re
 
-
 # Functions go here
+
 
 # Not blank function
 def not_blank(question, error_message):
@@ -114,7 +113,7 @@ food_price_dict = {
 food_ok = ""
 food = ""
 
-print(valid_food)
+print(food_price_dict)
 print()
 
 food_order = []
@@ -122,6 +121,7 @@ food_order = []
 # Main routine
 name = not_blank("Name: ",
                  "Sorry! it appears you left this blank")
+print()
 
 check_food = "Invalid choice"
 while check_food == "Invalid choice":
@@ -131,9 +131,11 @@ while check_food == "Invalid choice":
 # If user input is yes ask what snacks they want
 if check_food == "Yes":
 
+    print()
     budget = float(input("Budget: $"))
     ob1 = Solution()
     print(ob1.combinationsum(food_price_dict.values(), budget))
+    print()
 
     desired_food = ""
     while desired_food != "xxx":
@@ -172,6 +174,7 @@ if check_food == "Yes":
 
 # Show snack order
 print()
+
 if len(food_order) == 0:
     print("Food order: None")
 
