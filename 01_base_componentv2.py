@@ -135,7 +135,8 @@ if check_food == "Yes":
     print()
     budget = float(input("Budget: $"))
     ob1 = Solution()
-    print(ob1.combinationsum(food_price_dict.values(), budget))
+    recommended = ob1.combinationsum(food_price_dict.values(), budget)
+    print(recommended)
     print()
 
     desired_food = ""
