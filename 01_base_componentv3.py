@@ -184,12 +184,12 @@ if check_food == "Yes":
     for item in food_list:
         item.append(0)
 
-        for item in food_order:
-            if len(item) > 0:
-                to_find = (item[1])
-                amount = (item[0])
-                add_list = food_data_dict[to_find]
-                add_list[-1] = amount
+    for item in food_order:
+        if len(item) > 0:
+            to_find = (item[1])
+            amount = (item[0])
+            add_list = food_data_dict[to_find]
+            add_list[-1] = amount
 
         # Remove white space around desired snack
         desired_food = desired_food.strip()
@@ -224,6 +224,9 @@ food_frame["Sub Total"] = \
     food_frame['Arnotts Cheds'] * food_price_dict['Arnotts Cheds'] + \
     food_frame['Rosemary Wheat'] * food_price_dict['Rosemary Wheat'] + \
     food_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
+
+food_frame = food_frame.rename(columns={'Sea Salt Crackers': 'SSC',
+                                        "Original Rice Crackers": 'ORC'})
 
 # Prints food frame out
 print(food_frame)
