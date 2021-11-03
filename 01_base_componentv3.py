@@ -113,15 +113,39 @@ food_price_dict = {
 food_ok = ""
 food = ""
 recommended = ""
+all_names = []
+
+sea_salt_crackers = []
+griffins_snax = []
+pizza_shapes = []
+arnotts_cheds = []
+rosemary_wheat = []
+original_race_crackers = []
+
+food_list = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
 
 print(food_price_dict)
 print()
+
+# Food data dictionary
+food_data_dict = {
+    'Name': all_names,
+    'Sea Salt Crackers': sea_salt_crackers,
+    'Griffins Snax': griffins_snax,
+    'Pizza Shapes': pizza_shapes,
+    'Arnotts Cheds': arnotts_cheds,
+    'Rosemary Wheat': rosemary_wheat,
+    'Original Rice Crackers': original_race_crackers
+}
 
 food_order = []
 
 # Main routine
 name = not_blank("Name: ",
                  "Sorry! it appears you left this blank")
+
+all_names.append(name)
+
 print()
 
 check_food = "Invalid choice"
@@ -157,6 +181,16 @@ if check_food == "Yes":
             amount = 1
             desired_food = desired_food
 
+    for item in food_list:
+        item.append(0)
+
+        for item in food_order:
+            if len(item) > 0:
+                to_find = (item[1])
+                amount = (item[0])
+                add_list = food_data_dict[to_find]
+                add_list[-1] = amount
+
         # Remove white space around desired snack
         desired_food = desired_food.strip()
 
@@ -176,12 +210,21 @@ if check_food == "Yes":
             food_order.append(food_choice)
 
 # Show snack order
-print()
-if len(food_order) == 0:
-    print("Food order: None")
 
-else:
-    print("Food Ordered: ")
+# Print details
+food_frame = pandas.DataFrame(food_data_dict)
+food_frame = food_frame.set_index('Name')
 
-    for item in food_order:
-        print(item)
+# Create column called Sub Total
+# Fill it with price of tickets and snacks
+food_frame["Sub Total"] = \
+    food_frame['Sea Salt Crackers'] * food_price_dict['Sea Salt Crackers'] + \
+    food_frame['Griffins Snax'] * food_price_dict['Griffins Snax'] + \
+    food_frame['Pizza Shapes'] * food_price_dict['Pizza Shapes'] + \
+    food_frame['Arnotts Cheds'] * food_price_dict['Arnotts Cheds'] + \
+    food_frame['Rosemary Wheat'] * food_price_dict['Rosemary Wheat'] + \
+    food_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
+
+print(food_frame)
+
+food_frame.to_csv("food_details.csv")
