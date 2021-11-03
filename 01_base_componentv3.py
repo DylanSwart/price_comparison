@@ -101,12 +101,12 @@ yes_no = [
 
 # Price dictionary
 food_price_dict = {
-    'sea salt crackers': 2,
-    'griffins snax': 2.5,
-    'pizza shapes': 3.3,
-    'arnotts cheds': 3.99,
-    'rosemary wheat': 2,
-    'original rice crackers': 1.65
+    'Sea Salt Crackers': 2,
+    'Griffins Snax': 2.5,
+    'Pizza Shapes': 3.3,
+    'Arnotts Cheds': 3.99,
+    'Rosemary Wheat': 2,
+    'Original Rice Crackers': 1.65
 }
 
 # Initialise variables
@@ -153,7 +153,7 @@ while check_food == "Invalid choice":
     want_food = input("Do you want food?: ").lower()
     check_food = string_check(want_food, yes_no)
 
-# If user input is yes ask what snacks they want
+# If user input is yes ask what foods they want
 if check_food == "Yes":
 
     print()
@@ -209,7 +209,7 @@ if check_food == "Yes":
         if food_choice != "xxx" and food_choice != "Invalid choice":
             food_order.append(food_choice)
 
-# Show snack order
+# Show food order
 
 # Print details
 food_frame = pandas.DataFrame(food_data_dict)
@@ -225,6 +225,8 @@ food_frame["Sub Total"] = \
     food_frame['Rosemary Wheat'] * food_price_dict['Rosemary Wheat'] + \
     food_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
 
+# Prints food frame out
 print(food_frame)
 
+# Puts food frame into a csv file so it can be read
 food_frame.to_csv("food_details.csv")
