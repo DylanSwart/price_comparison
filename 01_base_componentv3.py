@@ -121,6 +121,7 @@ pizza_shapes = []
 arnotts_cheds = []
 rosemary_wheat = []
 original_race_crackers = []
+count = 0
 
 food_list = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
 
@@ -190,6 +191,7 @@ if check_food == "Yes":
             amount = (item[0])
             add_list = food_data_dict[to_find]
             add_list[-1] = amount
+            count += 1
 
         # Remove white space around desired snack
         desired_food = desired_food.strip()
