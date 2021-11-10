@@ -85,12 +85,12 @@ number_regex = "^[1-9]"
 
 # Lists and dictionaries goes here
 valid_food = [
-    ["sea salt crackers"],
-    ["griffins snax"],
-    ["pizza shapes"],
-    ["arnotts cheds"],
-    ["rosemary wheat"],
-    ["original rice crackers"]
+    ["Sea Salt Crackers", "SSC"],
+    ["Griffins Snax", "GS"],
+    ["Pizza Shapes", "PS"],
+    ["Arnotts Cheds", "AC"],
+    ["Rosemary Wheat", "RW"],
+    ["Original Rice Crackers", "ORC"]
 ]
 
 # Yes No list
@@ -153,6 +153,8 @@ while check_food == "Invalid choice":
     want_food = input("Do you want food?: ").lower()
     check_food = string_check(want_food, yes_no)
 
+    print("----------------------------------")
+
 # If user input is yes ask what foods they want
 if check_food == "Yes":
 
@@ -162,12 +164,20 @@ if check_food == "Yes":
     recommended = ob1.combinationsum(food_price_dict.values(), budget)
     print(recommended)
     print(food_price_dict)
+    print("----------------------------------")
     print()
 
     desired_food = ""
     while desired_food != "xxx":
         # Ask user for desired snack
-        desired_food = input("snack: ").lower()
+        desired_food = input("What is your desired food: ").lower()
+
+        if desired_food not in valid_food:
+            print("Sorry this is not a food")
+            print("----------------------------------")
+
+        else:
+            continue
 
         # Exit code
         if desired_food == "xxx":
