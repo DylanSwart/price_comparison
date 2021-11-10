@@ -121,7 +121,6 @@ pizza_shapes = []
 arnotts_cheds = []
 rosemary_wheat = []
 original_race_crackers = []
-count = 0
 
 food_list = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
 
@@ -174,6 +173,12 @@ if check_food == "Yes":
         if desired_food == "xxx":
             break
 
+        # Remove white space around desired snack
+        desired_food = desired_food.strip()
+
+        # Check if snack is valid
+        food_choice = string_check(desired_food, valid_food)
+
         if re.match(number_regex, desired_food):
             amount = int(desired_food[0])
             desired_food = desired_food[1:]
@@ -181,23 +186,6 @@ if check_food == "Yes":
         else:
             amount = 1
             desired_food = desired_food
-
-    for item in food_list:
-        item.append(0)
-
-    for item in food_order:
-        if len(item) > 0:
-            to_find = (item[1])
-            amount = (item[0])
-            add_list = food_data_dict[to_find]
-            add_list[-1] = amount
-            count += 1
-
-        # Remove white space around desired snack
-        desired_food = desired_food.strip()
-
-        # Check if snack is valid
-        food_choice = string_check(desired_food, valid_food)
 
         # Check if snack number is valid
         if amount >= 5:
@@ -210,6 +198,16 @@ if check_food == "Yes":
         # Check if snack is not exit code
         if food_choice != "xxx" and food_choice != "Invalid choice":
             food_order.append(food_choice)
+
+    for item in food_list:
+        item.append(0)
+
+    for item in food_order:
+        if len(item) > 0:
+            to_find = (item[1])
+            amount = (item[0])
+            add_list = food_data_dict[to_find]
+            add_list[-1] = amount
 
 # Show food order
 
