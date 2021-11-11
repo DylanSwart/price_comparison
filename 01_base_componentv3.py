@@ -183,9 +183,6 @@ if check_food == "Yes":
         if desired_food == "xxx":
             break
 
-        # Remove white space around desired snack
-        desired_food = desired_food.strip()
-
         # Check if snack is valid
         food_choice = string_check(desired_food, valid_food)
 
