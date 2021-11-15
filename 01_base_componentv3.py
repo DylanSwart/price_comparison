@@ -29,10 +29,10 @@ def string_check(choice, options):
 
     for var_list in options:
 
-        # If the snack is in the list return full response
+        # If the food is in the list return full response
         if choice in var_list:
 
-            # Get full name of snack and put it in title case
+            # Get full name of food and put it in title case
             chosen = var_list[0].title()
             is_valid = "yes"
             break
@@ -41,7 +41,7 @@ def string_check(choice, options):
         else:
             is_valid = "no"
 
-    # If snack is not ok ask question again
+    # If food is not ok ask question again
     if is_valid == "yes":
         return chosen
 
@@ -169,32 +169,32 @@ if check_food == "Yes":
 
     desired_food = ""
     while desired_food != "quit":
-        # Ask user for desired snack
+        # Ask user for desired food
         desired_food = input("What is your desired food: ").lower()
 
         for var_list in valid_food:
 
-            # If chosen snack is in valid snacks return full response
+            # If chosen food is in valid food return full response
             if desired_food in var_list:
 
-                # Get full name of snack and put it in title case
+                # Get full name of food and put it in title case
                 food = var_list[0].title()
                 food_ok = "yes"
                 break
 
-            # If chosen snack is not in valid snack set snack ok to no
+            # If chosen food is not in valid food set food ok to no
             else:
                 food_ok = "no"
 
         if food_ok == "yes":
-            print("Snack choice: ", food)
+            print("Food choice: ", food)
 
         else:
             print("Sorry that was not a option")
 
         print("----------------------------------")
 
-        # Check if snack is valid
+        # Check if Food is valid
         food_choice = string_check(desired_food, valid_food)
 
         if re.match(number_regex, desired_food):
@@ -205,15 +205,15 @@ if check_food == "Yes":
             amount = 1
             desired_food = desired_food
 
-        # Check if snack number is valid
+        # Check if food number is valid
         if amount >= 5:
-            print("Sorry we have a max of 4 snacks")
+            print("Sorry we have a max of 4 food")
             food_choice = "Invalid choice"
 
-        # Add snack to list
+        # Add food to list
         amount_food = "{} {}".format(amount, food_choice)
 
-        # Check if snack is not exit code
+        # Check if food is not exit code
         if food_choice != "quit" and food_choice != "Invalid choice":
             food_order.append(food_choice)
 
@@ -234,7 +234,7 @@ food_frame = pandas.DataFrame(food_data_dict)
 food_frame = food_frame.set_index('Name')
 
 # Create column called Sub Total
-# Fill it with price of tickets and snacks
+# Fill it with price of tickets and food
 food_frame["Sub Total"] = \
     food_frame['sea salt crackers'] * food_price_dict['sea salt crackers'] + \
     food_frame['griffins snax'] * food_price_dict['griffins snax'] + \
