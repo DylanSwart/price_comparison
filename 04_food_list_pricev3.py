@@ -26,7 +26,7 @@ food_data_dict = {
     'Original Rice Crackers': original_race_crackers
 }
 
-# cost of each snack
+# cost of each food
 food_price_dict = {
     'Sea Salt Crackers': 2,
     'Griffins Snax': 2.5,
@@ -44,11 +44,11 @@ test_data = [
 count = 0
 for client_order in test_data:
 
-    # Assume No snacks have been bought
+    # Assume no food have been bought
     for item in food_list:
         item.append(0)
 
-    # Print snack list
+    # Print food list
 
     # Get order hard coded for testing
     food_order = test_data[count]
@@ -67,7 +67,7 @@ food_frame = pandas.DataFrame(food_data_dict)
 food_frame = food_frame.set_index('Name')
 
 # Create column called Sub Total
-# Fill it with price of tickets and snacks
+# Fill it with price of tickets and food
 food_frame["Sub Total"] = \
     food_frame['Sea Salt Crackers'] * food_price_dict['Sea Salt Crackers'] + \
     food_frame['Griffins Snax'] * food_price_dict['Griffins Snax'] + \
