@@ -168,9 +168,30 @@ if check_food == "Yes":
     print()
 
     desired_food = ""
-    while desired_food != "xxx":
+    while desired_food != "quit":
         # Ask user for desired snack
         desired_food = input("What is your desired food: ").lower()
+
+        for var_list in valid_food:
+
+            # If chosen snack is in valid snacks return full response
+            if desired_food in var_list:
+
+                # Get full name of snack and put it in title case
+                food = var_list[0].title()
+                food_ok = "yes"
+                break
+
+            # If chosen snack is not in valid snack set snack ok to no
+            else:
+                food_ok = "no"
+
+        if food_ok == "yes":
+            print("Snack choice: ", food)
+
+        else:
+            print("Sorry that was not a option")
+
         print("----------------------------------")
 
         # Check if snack is valid
@@ -193,7 +214,7 @@ if check_food == "Yes":
         amount_food = "{} {}".format(amount, food_choice)
 
         # Check if snack is not exit code
-        if food_choice != "xxx" and food_choice != "Invalid choice":
+        if food_choice != "quit" and food_choice != "Invalid choice":
             food_order.append(food_choice)
 
     for item in food_list:
