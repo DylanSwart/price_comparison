@@ -85,12 +85,12 @@ number_regex = "^[1-9]"
 
 # Lists and dictionaries goes here
 valid_food = [
-    ["Sea Salt Crackers", "SSC"],
-    ["Griffins Snax", "GS"],
-    ["Pizza Shapes", "PS"],
-    ["Arnotts Cheds", "AC"],
-    ["Rosemary Wheat", "RW"],
-    ["Original Rice Crackers", "ORC"]
+    ["Sea salt crackers", "Ssc"],
+    ["Griffins snax", "Gs"],
+    ["Pizza shapes", "Ps"],
+    ["Arnotts cheds", "Ac"],
+    ["Rosemary wheat", "Rw"],
+    ["Original rice crackers", "Orc"]
 ]
 
 # Yes No list
@@ -101,12 +101,12 @@ yes_no = [
 
 # Price dictionary
 food_price_dict = {
-    'Sea Salt Crackers': 2,
-    'Griffins Snax': 2.5,
-    'Pizza Shapes': 3.3,
-    'Arnotts Cheds': 3.99,
-    'Rosemary Wheat': 2,
-    'Original Rice Crackers': 1.65
+    'Sea salt crackers': 2,
+    'Griffins snax': 2.5,
+    'Pizza shapes': 3.3,
+    'Arnotts cheds': 3.99,
+    'Rosemary wheat': 2,
+    'Original rice crackers': 1.65
 }
 
 # Initialise variables
@@ -130,12 +130,12 @@ print()
 # Food data dictionary
 food_data_dict = {
     'Name': all_names,
-    'Sea Salt Crackers': sea_salt_crackers,
-    'Griffins Snax': griffins_snax,
-    'Pizza Shapes': pizza_shapes,
-    'Arnotts Cheds': arnotts_cheds,
-    'Rosemary Wheat': rosemary_wheat,
-    'Original Rice Crackers': original_race_crackers
+    'Sea salt crackers': sea_salt_crackers,
+    'Griffins snax': griffins_snax,
+    'Pizza shapes': pizza_shapes,
+    'Arnotts cheds': arnotts_cheds,
+    'Rosemary wheat': rosemary_wheat,
+    'Original rice crackers': original_race_crackers
 }
 
 food_order = []
@@ -168,9 +168,9 @@ if check_food == "Yes":
     print()
 
     desired_food = ""
-    while desired_food != "xxx":
+    while desired_food != "Xxx":
         # Ask user for desired snack
-        desired_food = input("What is your desired food: ").lower()
+        desired_food = input("What is your desired food: ").capitalize()
 
         if desired_food not in valid_food:
             print("Sorry this is not a food")
@@ -180,7 +180,7 @@ if check_food == "Yes":
             continue
 
         # Exit code
-        if desired_food == "xxx":
+        if desired_food == "Xxx":
             break
 
         # Check if snack is valid
@@ -203,7 +203,7 @@ if check_food == "Yes":
         amount_food = "{} {}".format(amount, food_choice)
 
         # Check if snack is not exit code
-        if food_choice != "xxx" and food_choice != "Invalid choice":
+        if food_choice != "Xxx" and food_choice != "Invalid choice":
             food_order.append(food_choice)
 
     for item in food_list:
@@ -225,15 +225,15 @@ food_frame = food_frame.set_index('Name')
 # Create column called Sub Total
 # Fill it with price of tickets and snacks
 food_frame["Sub Total"] = \
-    food_frame['Sea Salt Crackers'] * food_price_dict['Sea Salt Crackers'] + \
-    food_frame['Griffins Snax'] * food_price_dict['Griffins Snax'] + \
-    food_frame['Pizza Shapes'] * food_price_dict['Pizza Shapes'] + \
-    food_frame['Arnotts Cheds'] * food_price_dict['Arnotts Cheds'] + \
-    food_frame['Rosemary Wheat'] * food_price_dict['Rosemary Wheat'] + \
-    food_frame['Original Rice Crackers'] * food_price_dict['Original Rice Crackers']
+    food_frame['Sea salt crackers'] * food_price_dict['Sea salt crackers'] + \
+    food_frame['Griffins snax'] * food_price_dict['Griffins snax'] + \
+    food_frame['Pizza shapes'] * food_price_dict['Pizza shapes'] + \
+    food_frame['Arnotts cheds'] * food_price_dict['Arnotts cheds'] + \
+    food_frame['Rosemary wheat'] * food_price_dict['Rosemary wheat'] + \
+    food_frame['Original rice crackers'] * food_price_dict['Original rice crackers']
 
-food_frame = food_frame.rename(columns={'Sea Salt Crackers': 'SSC',
-                                        "Original Rice Crackers": 'ORC'})
+food_frame = food_frame.rename(columns={'SeaSaltCrackers': 'SSC',
+                                        "OriginalRiceCrackers": 'ORC'})
 
 # Prints food frame out
 print(food_frame)

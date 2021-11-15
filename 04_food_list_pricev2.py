@@ -60,13 +60,13 @@ food_price_dict = {
     'pizza shapes': 3.3,
     'arnotts cheds': 3.99,
     'rosemary wheat': 2,
-    'original rice crackers': 1.65
+    'Ooriginal rice crackers': 1.65
 }
 
 # KG price dictionary
 kg_price_dict = {
     'sea salt crackers': 10.81,
-    'griffin snax': 10,
+    'griffins snax': 10,
     'pizza shapes': 17.37,
     'arnotts cheds': 15.96,
     'rosemary wheat': 11.76,
@@ -95,7 +95,7 @@ if check_food == "Yes":
     desired_food = ""
     while desired_food != "xxx":
         # Ask user for desired snack
-        desired_food = input("snack: ").lower()
+        desired_food = input("Food: ").lower()
 
         # Exit code
         if desired_food == "xxx":
