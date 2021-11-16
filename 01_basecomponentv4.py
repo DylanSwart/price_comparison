@@ -54,16 +54,19 @@ def instructions(options):
 
     show_help = "invalid choice"
     while show_help == "invalid choice":
-        show_help = input("Would you like to read the instructions?:").lower()
+        show_help = input("Would you like to read the instructions?: ").lower()
         show_help = string_check(show_help, options)
 
     if show_help == "Yes":
-        print()
-        print("Price comparison instructions")
-        print()
+        print("----------------------------------")
+        print("$$$ Price comparison instructions $$$")
+        print("----------------------------------")
         print("Please answer all questions.")
+        print()
         print("If answer is entered wrong it will give you a error message so you know what to fix")
+        print()
         print("If you want to exit out of an input enter quit")
+        print("----------------------------------")
 
     return ""
 
@@ -133,6 +136,7 @@ food_ok = ""
 food = ""
 recommended = ""
 all_names = []
+
 
 sea_salt_crackers = []
 griffins_snax = []
