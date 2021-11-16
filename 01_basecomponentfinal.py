@@ -1,6 +1,6 @@
 # Base component version 2
 # Import statements go here
-import pandas
+
 import re
 
 # Functions go here
@@ -29,10 +29,10 @@ def string_check(choice, options):
 
     for var_list in options:
 
-        # If the food is in the list return full response
+        # If the snack is in the list return full response
         if choice in var_list:
 
-            # Get full name of food and put it in title case
+            # Get full name of snack and put it in title case
             chosen = var_list[0].title()
             is_valid = "yes"
             break
@@ -41,7 +41,7 @@ def string_check(choice, options):
         else:
             is_valid = "no"
 
-    # If food is not ok ask question again
+    # If snack is not ok ask question again
     if is_valid == "yes":
         return chosen
 
@@ -107,12 +107,12 @@ number_regex = "^[1-9]"
 
 # Lists and dictionaries goes here
 valid_food = [
-    ["sea salt crackers", "ssc"],
-    ["griffins snax", "gs"],
-    ["pizza shapes", "ps"],
-    ["arnotts cheds", "ac"],
-    ["rosemary wheat", "rw"],
-    ["original rice crackers", "orc"]
+    ["sea salt crackers"],
+    ["griffins snax"],
+    ["pizza shapes"],
+    ["arnotts cheds"],
+    ["rosemary wheat"],
+    ["original rice crackers"]
 ]
 
 # Yes No list
@@ -135,90 +135,42 @@ food_price_dict = {
 food_ok = ""
 food = ""
 recommended = ""
-all_names = []
 
-
-sea_salt_crackers = []
-griffins_snax = []
-pizza_shapes = []
-arnotts_cheds = []
-rosemary_wheat = []
-original_race_crackers = []
-
-food_list = [sea_salt_crackers, griffins_snax, pizza_shapes, arnotts_cheds, rosemary_wheat, original_race_crackers]
-
-# Food data dictionary
-food_data_dict = {
-    'Name': all_names,
-    'sea salt crackers': sea_salt_crackers,
-    'griffins snax': griffins_snax,
-    'pizza shapes': pizza_shapes,
-    'arnotts cheds': arnotts_cheds,
-    'rosemary wheat': rosemary_wheat,
-    'original rice crackers': original_race_crackers
-}
 print(food_price_dict)
-print()
-
+print("----------------------------------")
 
 food_order = []
 instructions(yes_no)
+
 # Main routine
 name = not_blank("Name: ",
                  "Sorry! it appears you left this blank")
-
-all_names.append(name)
-
-print()
+print("----------------------------------")
 
 check_food = "Invalid choice"
 while check_food == "Invalid choice":
     want_food = input("Do you want food?: ").lower()
     check_food = string_check(want_food, yes_no)
 
-    print("----------------------------------")
-
-# If user input is yes ask what foods they want
+# If user input is yes ask what snacks they want
 if check_food == "Yes":
 
-    print()
+    print("----------------------------------")
     budget = float(input("Budget: $"))
     ob1 = Solution()
     recommended = ob1.combinationsum(food_price_dict.values(), budget)
     print(recommended)
     print(food_price_dict)
     print("----------------------------------")
-    print()
 
     desired_food = ""
     while desired_food != "quit":
-        # Ask user for desired food
-        desired_food = input("What is your desired food: ").lower()
+        # Ask user for desired snack
+        desired_food = input("snack: ").lower()
 
-        for var_list in valid_food:
-
-            # If chosen food is in valid food return full response
-            if desired_food in var_list:
-
-                # Get full name of food and put it in title case
-                food = var_list[0].title()
-                food_ok = "yes"
-                break
-
-            # If chosen food is not in valid food set food ok to no
-            else:
-                food_ok = "no"
-
-        if food_ok == "yes":
-            print("Food choice: ", food)
-
-        else:
-            print("Sorry that was not a option")
-
-        print("----------------------------------")
-
-        # Check if Food is valid
-        food_choice = string_check(desired_food, valid_food)
+        # Exit code
+        if desired_food == "quit":
+            break
 
         if re.match(number_regex, desired_food):
             amount = int(desired_food[0])
@@ -228,49 +180,31 @@ if check_food == "Yes":
             amount = 1
             desired_food = desired_food
 
-        # Check if food number is valid
+        # Remove white space around desired snack
+        desired_food = desired_food.strip()
+
+        # Check if snack is valid
+        food_choice = string_check(desired_food, valid_food)
+
+        # Check if snack number is valid
         if amount >= 5:
-            print("Sorry we have a max of 4 food")
+            print("Sorry we have a max of 4 snacks")
             food_choice = "Invalid choice"
 
-        # Add food to list
+        # Add snack to list
         amount_food = "{} {}".format(amount, food_choice)
 
-        # Check if food is not exit code
+        # Check if snack is not exit code
         if food_choice != "quit" and food_choice != "Invalid choice":
             food_order.append(food_choice)
 
-    for item in food_list:
-        item.append(0)
+# Show snack order
+print()
+if len(food_order) == 0:
+    print("Food order: None")
+
+else:
+    print("Food Ordered: ")
 
     for item in food_order:
-        if len(item) > 0:
-            to_find = (item[1])
-            amount = (item[0])
-            add_list = food_data_dict[to_find]
-            add_list[-1] = amount
-
-# Show food order
-
-# Print details
-food_frame = pandas.DataFrame(food_data_dict)
-food_frame = food_frame.set_index('Name')
-
-# Create column called Sub Total
-# Fill it with price of tickets and food
-food_frame["Sub Total"] = \
-    food_frame['sea salt crackers'] * food_price_dict['sea salt crackers'] + \
-    food_frame['griffins snax'] * food_price_dict['griffins snax'] + \
-    food_frame['pizza shapes'] * food_price_dict['pizza shapes'] + \
-    food_frame['arnotts cheds'] * food_price_dict['arnotts cheds'] + \
-    food_frame['rosemary wheat'] * food_price_dict['rosemary wheat'] + \
-    food_frame['original rice crackers'] * food_price_dict['original rice crackers']
-
-food_frame = food_frame.rename(columns={'sea Salt crackers': 'SSC',
-                                        "original rice crackers": 'ORC'})
-
-# Prints food frame out
-print(food_frame)
-
-# Puts food frame into a csv file so it can be read
-food_frame.to_csv("food_details.csv")
+        print(item)
